@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "outDir": "dist", //bien dich vao thu muc dist
+        "target": "ES6",
+        "module": "CommonJS", //tieu chuan duoc su dung trong node.js de lam viec voi module
+        "removeComments": true, //xoa comment khi bien dich sang file js
+        "esModuleInterop": true, // dung tu khoa import thay cho require
+    }
+}
