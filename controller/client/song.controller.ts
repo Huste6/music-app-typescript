@@ -28,3 +28,29 @@ export const list = async(req:Request,res:Response)=>{
         songs: songs
     })
 }
+//[GET] /songs/detail/:slugSong
+export const detail = async(req:Request,res:Response)=>{
+    const slugSong = req.params.slugSong;
+    const song = await Song.findOne({
+        slug:slugSong,
+        status:"active",
+        deleted:false
+    });
+    
+    const singer = await Singer.findOne({
+        _id:song.singerId,
+        deleted:false,
+    }).select("fullName avatar");
+    
+    const topic = await Topic.findOne({
+        _id:song.topicId,
+        deleted:false,
+    }).select("title");
+    
+    res.render("client/pages/songs/detail",{
+        pageTitle: "Chi tiết bài hát",
+        song:song,
+        singer:singer,
+        topic:topic
+    });
+}
