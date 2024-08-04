@@ -19,8 +19,8 @@ block main
                             span(class="inner-number mr-1") #{song.like}
                             | thích
                         div(
-                            class=`inner-action inner-heart`
-                            button-favorite='id'
+                            class=`inner-action inner-heart ${song.isfavoritesong ? "active":""}`
+                            button-favorite=song.id
                         )
                             <i class="fa-regular fa-heart"></i> Bài hát yêu thích
 
