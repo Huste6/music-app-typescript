@@ -177,11 +177,11 @@ ul li {
 }
 
 .singer-detail .inner-actions .inner-heart.active {
-    color: #b90000;
+    color: #0059ff;
 }
 
 .singer-detail .inner-actions .inner-heart i {
-    color: #b90000;
+    color: #0059ff;
 }
 
 .singer-detail .inner-actions .inner-heart.active i {
@@ -209,7 +209,7 @@ ul li {
     animation-duration: 12s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    animation-play-state: running;
+    animation-play-state: paused;
 }
 
 @keyframes spin {
