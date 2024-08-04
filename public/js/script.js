@@ -57,7 +57,7 @@ if(buttonLike){
 
 // button-favorite
 const ListbuttonFavorite = document.querySelectorAll("[button-favorite]");
-if(ListbuttonFavorite){
+if(ListbuttonFavorite.length>0){
     ListbuttonFavorite.forEach((buttonFavorite)=>{
         buttonFavorite.addEventListener("click",()=>{
             const idSong = buttonFavorite.getAttribute("button-favorite");
