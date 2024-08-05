@@ -60,3 +60,28 @@ body {
     padding: 6px 10px;
     border-bottom: 1px solid #515151;
 }
+/* image */
+.image-container{
+    position: relative;
+    display: inline-block;
+}
+.image-preview{
+    height: 124px;
+    width: 124px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.close{
+    position: absolute;
+    top:5px;
+    right: 5px;
+    color: #202020;
+    background: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 15px;
+}
+/* end image */

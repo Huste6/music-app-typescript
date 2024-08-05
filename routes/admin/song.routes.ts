@@ -4,4 +4,6 @@ import * as controller from "../../controller/admin/song.controller"
 
 router.get("/",controller.index);
 
+router.get("/create",controller.create);
+
 export const songRoutes:Router = router;
