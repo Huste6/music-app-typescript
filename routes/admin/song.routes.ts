@@ -2,7 +2,7 @@ import { Router } from "express";
 import multer from 'multer';
 const router:Router = Router();
 import * as controller from "../../controller/admin/song.controller"
-import {uploadSingle} from "../../middleware/admin/uploadCloud.middleware"
+import {uploadFields} from "../../middleware/admin/uploadCloud.middleware"
 
 const upload = multer();
 
@@ -12,8 +12,11 @@ router.get("/create",controller.create);
 
 router.post(
     "/create",
-    upload.single("avatar"),
-    uploadSingle,
+    upload.fields([
+        {name :"avatar", maxCount: 1 },
+        {name: "audio", maxCount: 1}
+    ]),
+    uploadFields,
     controller.createPOST
 );
 
