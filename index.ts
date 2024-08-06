@@ -2,6 +2,7 @@ import express,{ Express,Request,Response } from "express";
 import dotenv from "dotenv"
 import bodyParser from "body-parser"
 import methodOverride from "method-override"
+import cookieParser from "cookie-parser";
 import * as database from "./config/database"
 import clientRoutes from "./routes/client/index.routes";
 import adminRoutes from "./routes/admin/index.routes";
@@ -30,6 +31,9 @@ app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce
 
 // app local variable
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
+
+// Use cookie-parser middleware
+app.use(cookieParser());
 
 //client route
 clientRoutes(app);
