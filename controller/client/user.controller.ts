@@ -16,14 +16,14 @@ export const registerPost = async (req:Request, res:Response) => {
             email: req.body.email
         })
         if (ExistEmail) {
-            alert("Đã tồn tại email!");
+            req["flash"]("error","Đã tồn tại email!");
             return res.redirect("back");
         }
         const ExistPassword = await User.findOne({
             password: req.body.password
         });
         if(ExistPassword){
-            alert("Đã tồn tại password!");
+            req["flash"]("error","Đã tồn tại password!");
             return res.redirect("back");
         }
         const user = new User(req.body);
@@ -31,9 +31,43 @@ export const registerPost = async (req:Request, res:Response) => {
 
         res.cookie("tokenUser",user.tokenUser);
         res.redirect("/topics");
-        
     }catch(error){
-        alert("Đã xảy ra lỗi!");
+        req["flash"]("error","Đã xảy ra lỗi!");
+        return res.redirect("back");
+    }
+}
+//[GET] /user/login
+export const login = async (req:Request, res:Response) => {
+    res.render("client/pages/user/login", {
+        pageTitle: "Đăng nhập"
+    });
+}
+//[POST] /user/login
+export const loginPost = async (req:Request, res:Response) => {
+    try {
+        const email = req.body.email;
+        const password = md5(req.body.password);
+        const user = await User.findOne({
+            email: email,
+            deleted:false
+        })
+        if(!user){
+            req["flash"]("error","Không tồn tại email!");
+            return res.redirect("back");
+        }
+        if(user.password !== password){
+            req["flash"]("error","Sai mật khẩu!");
+            return res.redirect("back");
+        }
+        if(user.status === "inactive"){
+            req["flash"]("error","Tài khoản đang bị khóa!");
+            return res.redirect("back");
+        }
+        res.cookie("tokenUser",user.tokenUser);
+        res.redirect("/topics");
+    }catch(error){
+        console.error(error);
+        req["flash"]("error","Đã xảy ra lỗi!");
         return res.redirect("back");
     }
 }
