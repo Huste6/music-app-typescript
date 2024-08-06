@@ -347,27 +347,31 @@ ul li {
 /* End box-search */
 
 /* alert */
-[show-alert]{
+[show-alert] {
     position: fixed;
     top: 70px;
     right: 15px;
     z-index: 10001;
 }
-[show-alert].alert-hidden{
+
+[show-alert].alert-hidden {
     animation-name: alert-hidden;
     animation-duration: 0.5s;
     animation-fill-mode: both;
 }
-@keyframes alert-hidden{
-    from{
+
+@keyframes alert-hidden {
+    from {
         right: 15px;
     }
-    to{
+
+    to {
         right: -100%;
         display: none;
     }
 }
-[show-alert] [close-alert]{
+
+[show-alert] [close-alert] {
     background: #fff;
     display: inline-block;
     width: 24px;
@@ -378,4 +382,41 @@ ul li {
     border-radius: 50%;
     cursor: pointer;
 }
+
 /* end show alert */
+
+/*login*/
+.register-forgot {
+    margin-top: 20px;
+    text-align: center;
+}
+.register-forgot div span {
+    margin-right: 5px;
+    color: #333;
+}
+
+.register-forgot a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-forgot a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Styles for the forgot password section */
+.register-forgot .forgot {
+    margin-top: 10px;
+}
+
+.register-forgot .forgot a {
+    font-size: 0.9em;
+    color: #ff6347;
+}
+
+.register-forgot .forgot a:hover {
+    color: #ff4500;
+}
+/*end login*/
