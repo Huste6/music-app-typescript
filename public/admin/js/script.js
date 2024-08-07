@@ -43,6 +43,9 @@ const ButtonChangeStatus = document.querySelectorAll("[button-change-status]");
 if(ButtonChangeStatus.length > 0){
     ButtonChangeStatus.forEach(button => {
         button.addEventListener("click", () => {
+            const path = window.location.pathname;
+            const segments = path.split('/');
+            const lastSegment = segments[segments.length - 1];
             const DataStatus = button.getAttribute("data-status") === "active" ? "inactive" : "active";
             const DataID = button.getAttribute("data-id");
 
@@ -57,7 +60,7 @@ if(ButtonChangeStatus.length > 0){
                 button.classList.add('badge-danger');
                 button.textContent = 'Không hoạt động';
             }
-            const link = `/admin/songs/change-status/${DataStatus}/${DataID}`;
+            const link = `/admin/${lastSegment}/change-status/${DataStatus}/${DataID}`;
             const option = {
                 method: "PATCH"
             }

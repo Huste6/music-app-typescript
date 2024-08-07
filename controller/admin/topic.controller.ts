@@ -12,3 +12,19 @@ export const index = async (req: Request, res: Response) => {
         topics: topics
     })
 }
+// [PATCH] /admin/topics/change-status/:DataStatus/:DataID
+export const ChangeStatus = async (req: Request, res: Response) => {
+    const status = req.params.DataStatus;
+    const idSong = req.params.DataID;
+
+    await Topic.updateOne({
+        _id:idSong
+    },{
+        status: status
+    })
+    res.json({
+        code:200,
+        message: "Thành công!",
+        status: status
+    })
+}
