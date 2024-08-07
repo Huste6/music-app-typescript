@@ -32,4 +32,6 @@ router.patch(
     controller.editPatch
 );
 
+router.patch("/change-status/:DataStatus/:DataID",controller.ChangeStatus);
+
 export const songRoutes:Router = router;

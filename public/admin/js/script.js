@@ -37,3 +37,34 @@ if(uploadAudio){
     })
 } 
 // end upload-audio-play
+
+// button change status 
+const ButtonChangeStatus = document.querySelectorAll("[button-change-status]");
+if(ButtonChangeStatus.length > 0){
+    ButtonChangeStatus.forEach(button => {
+        button.addEventListener("click", () => {
+            const DataStatus = button.getAttribute("data-status") === "active" ? "inactive" : "active";
+            const DataID = button.getAttribute("data-id");
+
+            if (DataStatus === 'active') {
+                button.setAttribute('data-status', 'active');
+                button.classList.remove('badge-danger');
+                button.classList.add('badge-success');
+                button.textContent = 'Hoạt động';
+            } else {
+                button.setAttribute('data-status', 'inactive');
+                button.classList.remove('badge-success');
+                button.classList.add('badge-danger');
+                button.textContent = 'Không hoạt động';
+            }
+            const link = `/admin/songs/change-status/${DataStatus}/${DataID}`;
+            const option = {
+                method: "PATCH"
+            }
+            fetch(link,option)
+                .then(res=>res.json())
+                .then(data => {}) 
+        })
+    })
+}
+// end button change status

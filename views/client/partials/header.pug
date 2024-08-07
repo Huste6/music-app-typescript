@@ -41,9 +41,9 @@ header.header
               a(href="/topics") <i class="fa-solid fa-music"></i> Chủ đề
             li 
               a(href="/favorite-songs") <i class="fa-solid fa-heart"></i> Yêu thích
-            li
-              a(href="/user/info") <i class="fa-solid fa-user"></i> Tài khoản
             if(user)
+              li
+                a(href="/user/info") <i class="fa-solid fa-user"></i> Tài khoản
               li 
                 a(href="/user/logout") Đăng xuất
             else 

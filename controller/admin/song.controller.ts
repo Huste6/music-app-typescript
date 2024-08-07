@@ -106,3 +106,18 @@ export const editPatch = async (req: Request, res: Response) => {
     },dataSong)
     res.redirect("back");
 }
+// [PATCH] /admin/songs/change-status/:DataStatus/:DataID
+export const ChangeStatus = async (req: Request, res: Response) => {
+    const status = req.params.DataStatus;
+    const idSong = req.params.DataID;
+    await Song.updateOne({
+        _id:idSong
+    },{
+        status: status
+    })
+    res.json({
+        code:200,
+        message: "Thành công!",
+        status: status
+    })
+}
