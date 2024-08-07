@@ -85,3 +85,20 @@ body {
     line-height: 15px;
 }
 /* end image */
+.song-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+.song-avatar {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    height: auto;
+    margin-bottom: 20px;
+}
+.lyrics {
+    text-align: left;
+    margin-top: 20px;
+}

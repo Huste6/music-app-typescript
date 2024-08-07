@@ -58,7 +58,7 @@ if(ButtonChangeStatus.length > 0){
                 button.setAttribute('data-status', 'inactive');
                 button.classList.remove('badge-success');
                 button.classList.add('badge-danger');
-                button.textContent = 'Không hoạt động';
+                button.textContent = 'Dừng hoạt động';
             }
             const link = `/admin/${lastSegment}/change-status/${DataStatus}/${DataID}`;
             const option = {

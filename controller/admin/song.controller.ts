@@ -121,3 +121,14 @@ export const ChangeStatus = async (req: Request, res: Response) => {
         status: status
     })
 }
+// [GET] /admin/songs/detail/:idSong
+export const detail = async (req: Request, res: Response) => {
+    const IDSong = req.params.idSong;
+    const song = await Song.findOne({
+        _id:IDSong
+    });
+    res.render("admin/pages/songs/detail",{
+        pageTitle: "Chi tiết bài hát",
+        song: song
+    })
+}

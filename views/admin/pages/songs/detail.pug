@@ -1,0 +1,12 @@
+extends ../../layout/default.pug
+
+block main 
+    .song-detail
+        h1(class="mb-4") #{song.title}
+        img(src=song.avatar alt=song.title class="song-avatar")
+        p !{song.description}
+        audio(controls src=song.audio)
+        .lyrics
+            h2 Lyrics
+            pre 
+                | !{song.lyrics}
