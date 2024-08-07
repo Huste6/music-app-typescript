@@ -23,6 +23,14 @@ export const ChangeStatus = async (req: Request, res: Response) => {
     },{
         status: status
     })
+    await Song.updateMany(
+        {
+            topicId: idSong
+        },
+        {
+            status: status
+        }
+    )
     res.json({
         code:200,
         message: "Thành công!",
@@ -61,3 +69,22 @@ export const deletePOST = async (req: Request, res: Response) => {
         });
     }
 };
+// [GET] /admin/songs/edit/:idtopic
+export const edit = async (req: Request, res: Response) => {
+    const idtopic = req.params.idtopic;
+    const topic = await Topic.findOne({
+        _id:idtopic
+    });
+    res.render("admin/pages/topics/edit",{
+        pageTitle: "Chỉnh sửa",
+        topic: topic
+    })
+}
+// [PATCH] /admin/songs/edit/:idtopic
+export const editPATCH = async (req: Request, res: Response) => {
+    const idtopic = req.params.idtopic;
+    await Topic.updateOne({
+        _id: idtopic
+    }, req.body);
+    res.redirect("back");
+}

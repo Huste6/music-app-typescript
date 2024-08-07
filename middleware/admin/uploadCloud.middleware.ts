@@ -34,16 +34,12 @@ const uploadToCloudinary = async (buffer: any) => {
     return result["secure_url"];
 }
 
-// Middleware to handle file upload
+
 export const uploadSingle = async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (req["file"]) {
             const result = await uploadToCloudinary(req["file"].buffer);
             req.body[req["file"].fieldname] = result;
-        } else {
-            console.error('No file received in the request');
-            res.status(400).send({ error: 'No file received' });
-            return;
         }
     } catch (error) {
         console.error('Error uploading to Cloudinary:', error);
