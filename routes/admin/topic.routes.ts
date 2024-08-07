@@ -21,4 +21,6 @@ router.patch(
     controller.editPATCH
 );
 
+router.get("/detail/:idTopic",controller.detail);
+
 export const topicsRoutes:Router = router;

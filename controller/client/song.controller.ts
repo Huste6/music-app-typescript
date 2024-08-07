@@ -90,7 +90,6 @@ export const like = async(req:Request,res:Response)=>{
 export const favorite = async(req:Request,res:Response)=>{
     const idSong = req.params.idSong;
     const typeFavorite = req.params.typeFavorite;
-    console.log(typeFavorite);
     switch (typeFavorite) {
         case "favorite":
             const existFavoriteSong = await favoriteSong.findOne({

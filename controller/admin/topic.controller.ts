@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Topic from "../../model/topic.model";
 import Song from "../../model/song.model";
+import Singer from "../../model/singer.model";
 
 // [GET] /admin/topics
 export const index = async (req: Request, res: Response) => {
@@ -69,7 +70,7 @@ export const deletePOST = async (req: Request, res: Response) => {
         });
     }
 };
-// [GET] /admin/songs/edit/:idtopic
+// [GET] /admin/topics/edit/:idtopic
 export const edit = async (req: Request, res: Response) => {
     const idtopic = req.params.idtopic;
     const topic = await Topic.findOne({
@@ -80,11 +81,39 @@ export const edit = async (req: Request, res: Response) => {
         topic: topic
     })
 }
-// [PATCH] /admin/songs/edit/:idtopic
+// [PATCH] /admin/topics/edit/:idtopic
 export const editPATCH = async (req: Request, res: Response) => {
     const idtopic = req.params.idtopic;
     await Topic.updateOne({
         _id: idtopic
     }, req.body);
     res.redirect("back");
+}
+// [GET] /admin/topics/detail/:idTopic
+export const detail = async (req: Request, res: Response) => {
+    const idTopic = req.params.idTopic;
+    let datasong = [];
+    const topic = await Topic.findOne({
+        _id:idTopic
+    });
+    const songInTopic = await Song.find({
+        topicId: idTopic
+    });
+    for (const song of songInTopic) {
+        const infoSinger = await Singer.findOne({
+            _id: song.singerId 
+        });
+        const ObjectSong = {
+            id: song.id,
+            slug: song.slug,
+            title: song.title,
+            avatar: song.avatar,
+            fullName: infoSinger.fullName
+        }
+        datasong.push(ObjectSong);
+    }
+    res.render("admin/pages/topics/detail",{
+        pageTitle: "Chi tiết về chủ đề",
+        datasong: datasong
+    })
 }
