@@ -390,6 +390,7 @@ ul li {
     margin-top: 20px;
     text-align: center;
 }
+
 .register-forgot div span {
     margin-right: 5px;
     color: #333;
@@ -419,4 +420,79 @@ ul li {
 .register-forgot .forgot a:hover {
     color: #ff4500;
 }
+
 /*end login*/
+/* info */
+.profile-container {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.profile-container .form-group {
+    margin-bottom: 1rem;
+}
+
+.profile-container .form-check-label {
+    margin-right: 10px;
+}
+
+.profile-image {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-image img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile-image button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.profile-image p {
+    margin: 0;
+}
+.profile-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.form-group label {
+    font-weight: bold;
+}
+.form-control {
+    border-radius: 5px;
+}
+.form-check-label {
+    margin-left: 5px;
+}
+.profile-container {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.image-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-secondary {
+    display: block;
+    margin: 10px auto;
+}
+/* end info */

@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
         },
         phone: String,
         avatar: String,
+        gender:String,
         status: {
             type:String,
             default: "active"

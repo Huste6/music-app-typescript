@@ -180,3 +180,34 @@ export const resetPost =async (req:Request, res:Response) => {
     req["flash"]("success","Đổi mật khẩu thành công");
     res.redirect("/topics");
 }
+//[GET] /user/info
+export const info =async (req:Request, res:Response) => {
+    res.render("client/pages/user/info",{
+        pageTitle: "Thông tin tài khoản"
+    })
+}
+//[PATCH] /user/info
+export const infoPATCH =async (req:Request, res:Response) => {
+    const tokenUser = req.cookies.tokenUser;
+    interface dataUSER {
+        fullname:string,
+        email:string,
+        phone?:string,
+        gender?:string,
+        avatar?:string
+    }
+    const dataUSer = {
+        fullname: req.body.fullname,
+        email: req.body.email,
+        phone: req.body.phone,
+        gender:  req.body.gender,
+    }
+    if(req.body.avatar){
+        dataUSer["avatar"] = req.body.avatar[0]
+    }
+    await User.updateOne({
+        tokenUser: tokenUser
+    },dataUSer)
+    
+    res.redirect("back");
+}
