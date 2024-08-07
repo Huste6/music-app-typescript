@@ -36,4 +36,6 @@ router.patch("/change-status/:DataStatus/:DataID",controller.ChangeStatus);
 
 router.get("/detail/:idSong",controller.detail);
 
+router.post("/delete/:idSong",controller.deletePOST);
+
 export const songRoutes:Router = router;

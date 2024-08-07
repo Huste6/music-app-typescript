@@ -132,3 +132,29 @@ export const detail = async (req: Request, res: Response) => {
         song: song
     })
 }
+// [POST] /admin/songs/delete/:idSong
+export const deletePOST = async (req: Request, res: Response) => {
+    const IDSONG = req.params.idSong;
+    try {
+        const song = await Song.findOne({ _id: IDSONG });
+        if (!song) {
+            req["flash"]("error", "Không tìm thấy bài hát!");
+            return res.redirect("back");
+        }
+
+        await Song.updateOne({ _id: IDSONG }, { deleted: true });
+
+        req["flash"]("success", "Xóa thành công bài hát!");
+        return res.json({
+            code: 200,
+            message: "Success!"
+        });
+    } catch (error) {
+        console.error("Error:", error);
+        req["flash"]("error", "Có lỗi xảy ra!");
+        return res.status(500).json({
+            code: 500,
+            message: "Internal Server Error",
+        });
+    }
+};

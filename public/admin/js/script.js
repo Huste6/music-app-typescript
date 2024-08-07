@@ -71,3 +71,57 @@ if(ButtonChangeStatus.length > 0){
     })
 }
 // end button change status
+
+// button-delete
+const ButtonDelete = document.querySelectorAll("[button-delete]");
+if (ButtonDelete.length > 0) {
+    const tbody = document.querySelector("tbody");
+    ButtonDelete.forEach(button => {
+        button.addEventListener("click", () => {
+            const path = window.location.pathname;
+            const segments = path.split('/');
+            const lastSegment = segments[segments.length - 1];
+            const dataId = button.getAttribute("data-id");
+            if (confirm("Bạn có chắc muốn xóa mục này không!")) {
+                const link = `/admin/${lastSegment}/delete/${dataId}`;
+                const options = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+                fetch(link, options)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.code === 200) {
+                            const tr = button.closest("tr");
+                            tbody.removeChild(tr);
+                        } else {
+                            alert(data.message || "Có lỗi xảy ra!");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("Có lỗi xảy ra!");
+                    });
+            }
+        });
+    });
+}
+// end button-delete
+
+// show alert
+const showAlert = document.querySelector("[show-alert]")
+if (showAlert) {
+    const time = parseInt(showAlert.getAttribute("data-time"))
+    const closeAlert = showAlert.querySelector("[close-alert]");
+
+    setTimeout(() => {
+        showAlert.classList.add("alert-hidden")
+    }, time);
+
+    closeAlert.addEventListener("click", () => {
+        showAlert.classList.add("alert-hidden")
+    })
+}
+// end show alert
