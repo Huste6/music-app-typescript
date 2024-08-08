@@ -18,3 +18,11 @@ block main
                             div(class="inner-title")
                                 a(href=`/songs/detail/${song.slug}`) #{song.title}
                             div(class="inner-singer") <i class="fa-solid fa-microphone-lines"></i> #{song.fullName}
+                            if song.status == "active"
+                                a(
+                                    class="badge badge-success"
+                                ) Hoạt động
+                            else
+                                a(
+                                    class="badge badge-danger"
+                                ) Dừng hoạt động

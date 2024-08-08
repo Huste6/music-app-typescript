@@ -1,0 +1,25 @@
+extends ../../layout/default.pug
+
+block main
+  h1.mb-4 #{pageTitle}
+
+  .singer-profile
+    .profile-header
+      if singer.avatar
+        img.avatar(src=singer.avatar, alt=`Avatar of ${singer.fullName}`)
+      else
+        img.avatar(src='default-avatar.png', alt='Default Avatar')
+        
+      h2.name #{singer.fullName}
+      p.status Status: #{singer.status}
+    
+    .profile-details
+      p 
+        span.label Birth Date: 
+        span.value #{singer.birthDate ? singer.birthDate.toDateString() : 'Unknown'}
+      p 
+        span.label Gender: 
+        span.value #{singer.gender || 'Unknown'}
+      p 
+        span.label Hometown: 
+        span.value #{singer.hometown || 'Unknown'}

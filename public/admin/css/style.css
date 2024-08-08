@@ -1,17 +1,20 @@
 body {
     overflow-x: hidden;
 }
-.main{
+
+.main {
     max-width: calc(100% - 170px);
 }
+
 /* header */
-.header{
+.header {
     background: #202020;
-    padding:10px 0;
+    padding: 10px 0;
     position: sticky;
-    top:0;
+    top: 0;
     z-index: 999;
 }
+
 .inner-logo a {
     color: #ffffff;
     font-size: 24px;
@@ -27,7 +30,7 @@ body {
 }
 
 /* body */
-.body .sider{
+.body .sider {
     width: 150px;
     background: #323232;
     color: #fff;
@@ -37,7 +40,7 @@ body {
     left: 0;
 }
 
-.body .main{
+.body .main {
     margin: 15px;
     position: relative;
     left: 150px;
@@ -45,7 +48,7 @@ body {
 }
 
 /* sider */
-.sider .inner-menu ul{
+.sider .inner-menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -54,26 +57,30 @@ body {
     justify-content: flex-start;
     flex-wrap: wrap;
 }
-.sider .inner-menu ul li a{
+
+.sider .inner-menu ul li a {
     color: #fff;
     display: block;
     padding: 6px 10px;
     border-bottom: 1px solid #515151;
 }
+
 /* image */
-.image-container{
+.image-container {
     position: relative;
     display: inline-block;
 }
-.image-preview{
+
+.image-preview {
     height: 124px;
     width: 124px;
     border-radius: 10px;
     object-fit: cover;
 }
-.close{
+
+.close {
     position: absolute;
-    top:5px;
+    top: 5px;
     right: 5px;
     color: #202020;
     background: #fff;
@@ -84,6 +91,7 @@ body {
     cursor: pointer;
     line-height: 15px;
 }
+
 /* end image */
 .song-detail {
     max-width: 800px;
@@ -91,6 +99,7 @@ body {
     padding: 20px;
     text-align: center;
 }
+
 .song-avatar {
     width: 100px;
     height: 100px;
@@ -98,10 +107,12 @@ body {
     height: auto;
     margin-bottom: 20px;
 }
+
 .lyrics {
     text-align: left;
     margin-top: 20px;
 }
+
 /* alert */
 [show-alert] {
     position: fixed;
@@ -193,4 +204,55 @@ body {
     color: #282828;
     margin-bottom: 2px;
 }
+
 /* end song-item */
+
+/* singer-profile */
+.singer-profile {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.profile-header {
+    text-align: center;
+    padding: 20px;
+    background-color: #6a5acd;
+    color: #fff;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    margin-bottom: 10px;
+}
+
+.name {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.status {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.profile-details {
+    padding: 20px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    margin-left: 5px;
+}
+/* end singer-profile */

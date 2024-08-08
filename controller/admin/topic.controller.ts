@@ -105,6 +105,7 @@ export const detail = async (req: Request, res: Response) => {
         });
         const ObjectSong = {
             id: song.id,
+            status: song.status,
             slug: song.slug,
             title: song.title,
             avatar: song.avatar,
