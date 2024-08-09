@@ -103,3 +103,48 @@ export const editPatch = async (req: Request, res: Response) => {
         res.status(500).send("Internal Server Error");
     }
 }
+// [POST] /admin/accounts/delete/:dataId
+export const deletePost = async (req: Request, res: Response) => {
+    const dataId = req.params.dataId;
+    try {
+        const account = await Account.findOne({ _id: dataId });
+        if (!account) {
+            req["flash"]("error", "Không tìm thấy bài hát!");
+            return res.redirect("back");
+        }
+
+        await Account.updateOne({ _id: dataId }, { deleted: true });
+
+        req["flash"]("success", "Xóa thành công bài hát!");
+        return res.json({
+            code: 200,
+            message: "Success!"
+        });
+    } catch (error) {
+        console.error("Error:", error);
+        req["flash"]("error", "Có lỗi xảy ra!");
+        return res.status(500).json({
+            code: 500,
+            message: "Internal Server Error",
+        });
+    }
+}
+// [GET] /admin/accounts/detail/:idAccount
+export const detail = async (req: Request, res: Response) => {
+    const idAccountAdmin = req.params.idAccount;
+    const ExistAccount = await Account.findOne({
+        _id: idAccountAdmin
+    });
+    if(!ExistAccount){
+        req["flash"]("error","Không tìm thấy tài khoản admin!");
+        return res.redirect("back");
+    }
+    const role = await Role.findOne({
+        _id: ExistAccount.role_id
+    }).select("title permissions");
+    res.render("admin/pages/accounts/detail",{
+        pageTitle: "Tạo tài khoản",
+        ExistAccount: ExistAccount,
+        role: role
+    })
+}

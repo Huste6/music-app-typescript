@@ -23,4 +23,8 @@ router.get("/edit/:id",controller.edit);
 
 router.patch("/edit/:id",controller.editPatch);
 
+router.post("/delete/:dataId",controller.deletePost);
+
+router.get("/detail/:idAccount",controller.detail);
+
 export const accountRoutes:Router = router;
