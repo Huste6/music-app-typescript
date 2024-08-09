@@ -143,7 +143,7 @@ export const detail = async (req: Request, res: Response) => {
         _id: ExistAccount.role_id
     }).select("title permissions");
     res.render("admin/pages/accounts/detail",{
-        pageTitle: "Tạo tài khoản",
+        pageTitle: "Chi tiết tài khoản admin",
         ExistAccount: ExistAccount,
         role: role
     })

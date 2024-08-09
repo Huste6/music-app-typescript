@@ -352,7 +352,7 @@ li {
 
 .account-info {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     margin-bottom: 20px;
 }
 
@@ -360,8 +360,8 @@ li {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
 }
 
 img.avatar {
@@ -414,3 +414,38 @@ ul.permissions li.permission-item {
 }
 
 /* end detail admin */
+
+/* info user */
+.profile-container {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.form-check-label {
+    margin-left: 5px;
+}
+
+.profile-image {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.image-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+/* end info user */
