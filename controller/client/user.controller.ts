@@ -203,7 +203,7 @@ export const infoPATCH =async (req:Request, res:Response) => {
         gender:  req.body.gender,
     }
     if(req.body.avatar){
-        dataUSer["avatar"] = req.body.avatar[0]
+        dataUSer["avatar"] = req.body.avatar
     }
     await User.updateOne({
         tokenUser: tokenUser

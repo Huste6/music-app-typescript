@@ -1,4 +1,55 @@
 extends ../../layout/default.pug
 
 block main
-  h1 Trang tổng quan
+  h1(class="mb-4") Trang tổng quan
+
+  if songs && topics && singers
+    .row
+      .col-md-4
+        .card.text-white.bg-primary.mb-3
+          .card-header Số lượng chủ đề
+          .card-body
+            h5.card-title #{topics.length} Chủ đề
+            p.card-text Thông tin tổng quan về các chủ đề.
+
+      .col-md-4
+        .card.text-white.bg-success.mb-3
+          .card-header Số lượng bài hát
+          .card-body
+            h5.card-title #{songs.length} Bài hát
+            p.card-text Thông tin tổng quan về các bài hát.
+
+      .col-md-4
+        .card.text-white.bg-info.mb-3
+          .card-header Số lượng ca sĩ
+          .card-body
+            h5.card-title #{singers.length} Ca sĩ
+            p.card-text Thông tin tổng quan về các ca sĩ.
+
+    .row
+      .col-md-12
+        .card.mb-3
+          .card-header Thống kê hoạt động
+          .card-body
+            .row
+              .col-md-6
+                h5 Bài hát hoạt động
+                ul
+                  if songs.length > 0
+                    each song in songs
+                      if song && song.status == "active"
+                        li #{song.title}
+                  else
+                    li Không có bài hát nào
+
+              .col-md-6
+                h5 Ca sĩ hoạt động
+                ul
+                  if singers.length > 0
+                    each singer in singers
+                      if singer && singer.status == "active"
+                        li #{singer.fullName}
+                  else
+                    li Không có ca sĩ nào hoạt động
+  else
+    p Không có dữ liệu để hiển thị.
