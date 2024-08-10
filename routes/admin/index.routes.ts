@@ -10,6 +10,7 @@ import * as authMiddleware from "../../middleware/admin/auth.middleware"
 import { accountRoutes } from "./account.routes";
 import { RoleRoutes } from "./role.routes";
 import { UserRoutes } from "./user.routes";
+import { MyaccountRoutes } from "./my-account.routes";
 
 const adminRoutes = (app: Express):void => {
     const PATH_ADMIN = `${systemConfig.prefixAdmin}`;
@@ -23,6 +24,7 @@ const adminRoutes = (app: Express):void => {
     app.use(`${PATH_ADMIN}/accounts`,authMiddleware.requireAuth,accountRoutes);
     app.use(`${PATH_ADMIN}/roles`,authMiddleware.requireAuth,RoleRoutes)
     app.use(`${PATH_ADMIN}/users`,authMiddleware.requireAuth,UserRoutes)
+    app.use(`${PATH_ADMIN}/my-account`,authMiddleware.requireAuth,MyaccountRoutes)
 }
 
 export default adminRoutes;
