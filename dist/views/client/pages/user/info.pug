@@ -1,0 +1,98 @@
+extends ../../layout/default.pug
+include ../../mixins/box-head.pug
+
+block main
+    .container.my-5 
+        .row 
+            .col-12 
+                +box-head("Thông tin tài khoản")
+                
+        .row.justify-content-center
+            .col-8
+                .profile-container
+                    form(
+                        action=`/user/info?_method=PATCH`
+                        method="POST"
+                        class="w-100"
+                        enctype="multipart/form-data"
+                    )
+                        .row
+                            .col-md-8
+                                .form-group
+                                    label(for="fullname") Họ và tên
+                                    input.form-control(
+                                        type="text"
+                                        id="fullname"
+                                        name="fullname"
+                                        value=user.fullname
+                                        required
+                                    )
+                                .form-group
+                                    label(for="email") Email
+                                    input.form-control(
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value=user.email
+                                        required
+                                    )
+                                .form-group
+                                    label(for="phone") Số điện thoại
+                                    input.form-control(
+                                        type="tel"
+                                        id="phone"
+                                        name="phone"
+                                        value=user.phone
+                                        required
+                                    )
+                                .form-group
+                                    label(for="gender") Giới tính 
+                                    .form-check.form-check-inline
+                                        input.form-check-input(
+                                            type="radio"
+                                            name="gender"
+                                            id="male"
+                                            value="male"
+                                            checked= (user.gender === "male") ? true : false
+                                        )
+                                        label.form-check-label(for="male") Nam
+                                    .form-check.form-check-inline
+                                        input.form-check-input(
+                                            type="radio"
+                                            name="gender"
+                                            id="female"
+                                            value="female"
+                                            checked= (user.gender === "female") ? true : false
+                                        )
+                                        label.form-check-label(for="female") Nữ
+                                    .form-check.form-check-inline
+                                        input.form-check-input(
+                                            type="radio"
+                                            name="gender"
+                                            id="other"
+                                            value="other"
+                                            checked= (user.gender === "other") ? true : false
+                                        )
+                                        label.form-check-label(for="other") Khác
+                            .col-md-4.text-center
+                                .profile-image
+                                    .form-group.upload-image
+                                        input(
+                                            type="file"
+                                            class="form-control-file d-none"
+                                            id="avatar"
+                                            name="avatar"
+                                            accept="image/*"
+                                            upload-image-input
+                                        )
+                                        img(
+                                            src=(user.avatar) ? user.avatar : "https://via.placeholder.com/100"
+                                            alt="avatar"
+                                            class="image-preview rounded-circle mb-3"
+                                            id="imagePreview"
+                                            upload-image-preview
+                                        )
+                                        label.btn.btn-secondary(for="avatar") Chọn ảnh
+                        .row
+                            .col-12.text-center.form-group
+                                button.btn.btn-primary.mt-4(type="submit") Lưu
