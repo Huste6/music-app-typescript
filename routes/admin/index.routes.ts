@@ -20,9 +20,9 @@ const adminRoutes = (app: Express):void => {
     app.use(`${PATH_ADMIN}/upload`,authMiddleware.requireAuth, uploadRoutes);
     app.use(`${PATH_ADMIN}/singers`,authMiddleware.requireAuth, SingerRoutes);
     app.use(`${PATH_ADMIN}/auth`,AuthRouter);
-    app.use(`${PATH_ADMIN}/accounts`,accountRoutes);
-    app.use(`${PATH_ADMIN}/roles`,RoleRoutes)
-    app.use(`${PATH_ADMIN}/users`,UserRoutes)
+    app.use(`${PATH_ADMIN}/accounts`,authMiddleware.requireAuth,accountRoutes);
+    app.use(`${PATH_ADMIN}/roles`,authMiddleware.requireAuth,RoleRoutes)
+    app.use(`${PATH_ADMIN}/users`,authMiddleware.requireAuth,UserRoutes)
 }
 
 export default adminRoutes;
