@@ -16,7 +16,11 @@ export const requireAuth = async (req:Request,res:Response,next:NextFunction) =>
             const roles = await Role.find({
                 _id: user.role_id
             }).select("title permissions");
-            res.locals.roles = roles;
+            if (roles.length === 0) {
+                res.locals.roles = null;
+            } else {
+                res.locals.roles = roles[0];
+            }
             res.locals.user = user;
             next();
         }

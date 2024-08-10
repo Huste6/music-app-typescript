@@ -1,64 +1,88 @@
 extends ../../layout/default.pug
 
 block main
-    h1(class="mb-4") #{pageTitle}
-    .card.mb-3 
-        .card-header Danh sách
-        .card-body 
-            .row 
-                .col-8
-                .col-4 
-                    a(
-                        href=`${prefixAdmin}/topics/create`
-                        class="btn btn-outline-success"
-                    ) +Them mới
+    if(roles.permissions.includes("topics-view"))
+        h1(class="mb-4") #{pageTitle}
+        .card.mb-3 
+            .card-header Danh sách
+            .card-body 
+                .row 
+                    .col-8
+                    if(roles.permissions.includes("topics-create"))
+                        .col-4 
+                            a(
+                                href=`${prefixAdmin}/topics/create`
+                                class="btn btn-outline-success"
+                            ) +Them mới
 
-            table(
-                class="table table-hover table-sm table-striped"
-                checkbox-multi
-                )
-                    thead.thead-dark
-                        tr 
-                            th STT
-                            th Hình ảnh 
-                            th Tiêu đề 
-                            th Trạng thái
-                            th Hành động
-                    tbody 
-                        each item, index in topics
+                table(
+                    class="table table-hover table-sm table-striped"
+                    checkbox-multi
+                    )
+                        thead.thead-dark
                             tr 
-                                td  #{index + 1}
-                                td 
-                                    img(src=item.avatar, alt=item.title, width="100px" height="auto")
-                                td #{item.title}
-                                td 
-                                    if item.status == "active"
-                                        a(
-                                            href="javascript:;"
-                                            data-status=item.status
-                                            data-id=item.id
-                                            button-change-status
-                                            class="badge badge-success"
-                                        ) Hoạt động
+                                th STT
+                                th Hình ảnh 
+                                th Tiêu đề 
+                                th Trạng thái
+                                th Hành động
+                        tbody 
+                            each item, index in topics
+                                tr 
+                                    td  #{index + 1}
+                                    td 
+                                        img(src=item.avatar, alt=item.title, width="100px" height="auto")
+                                    td #{item.title}
+                                    if(roles.permissions.includes("topics-edit"))
+                                        td 
+                                            if item.status == "active"
+                                                a(
+                                                    href="javascript:;"
+                                                    data-status=item.status
+                                                    data-id=item.id
+                                                    button-change-status
+                                                    class="badge badge-success"
+                                                ) Hoạt động
+                                            else
+                                                a(
+                                                    href="javascript:;"
+                                                    data-status=item.status
+                                                    data-id=item.id
+                                                    button-change-status
+                                                    class="badge badge-danger"
+                                                ) Dừng hoạt động
                                     else
-                                        a(
-                                            href="javascript:;"
-                                            data-status=item.status
-                                            data-id=item.id
-                                            button-change-status
-                                            class="badge badge-danger"
-                                        ) Dừng hoạt động
-                                td
-                                    a(
-                                        href=`${prefixAdmin}/topics/detail/${item.id}`
-                                        class="btn btn-secondary btn-sm"
-                                    ) Chi tiết 
-                                    a(
-                                        href=`${prefixAdmin}/topics/edit/${item.id}`
-                                        class="btn btn-warning btn-sm"
-                                    ) Sửa  
-                                    button(
-                                        class="btn btn-danger btn-sm ml-1"
-                                        button-delete
-                                        data-id=item.id
-                                    ) Xóa
+                                        td 
+                                            if item.status == "active"
+                                                a(
+                                                    href="javascript:;"
+                                                    data-status=item.status
+                                                    data-id=item.id
+                                                    class="badge badge-success"
+                                                ) Hoạt động
+                                            else
+                                                a(
+                                                    href="javascript:;"
+                                                    data-status=item.status
+                                                    data-id=item.id
+                                                    class="badge badge-danger"
+                                                ) Dừng hoạt động
+                                    td
+                                        if(roles.permissions.includes("topics-view"))
+                                            a(
+                                                href=`${prefixAdmin}/topics/detail/${item.id}`
+                                                class="btn btn-secondary btn-sm"
+                                            ) Chi tiết 
+                                        if(roles.permissions.includes("topics-edit"))
+                                            a(
+                                                href=`${prefixAdmin}/topics/edit/${item.id}`
+                                                class="btn btn-warning btn-sm"
+                                            ) Sửa
+                                        if(roles.permissions.includes("topics-delete"))
+                                            button(
+                                                class="btn btn-danger btn-sm ml-1"
+                                                button-delete
+                                                data-id=item.id
+                                            ) Xóa
+    else 
+        h1 Bạn không có quyền truy cập

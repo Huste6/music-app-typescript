@@ -2,32 +2,35 @@ extends ../../layout/default.pug
 include ../../mixins/alert.pug
 
 block main
-    +alert-error("5000")
-    .account-details
-        .account-header
-            h1 Chi tiết tài khoản admin
-        .account-info
-            .col-6
-                p
-                    span.label Họ và tên:
-                    span.value #{ExistAccount.fullName}
-                p
-                    span.label Email:
-                    span.value #{ExistAccount.email}
-                p
-                    span.label Số điện thoại:
-                    span.value #{ExistAccount.phone}
-                p
-                    span.label Vai trò:
-                    span.value #{role.title}
-                p
-                    span.label Trạng thái:
-                    span.value= (ExistAccount.status == 'active') ? 'Đang hoạt động' : 'Không hoạt động'
-            .col-6.avatar-col-6
-                img.avatar(src=ExistAccount.avatar alt="Avatar của admin")
-                btn(class="btn btn-primary") Avatar
-        .account-permissions
-            h2 Vai trò & Quyền hạn
-            ul.permissions
-                each permission in role.permissions
-                    li.permission-item #{permission}
+    if(roles.permissions.includes("accounts-admin-view"))
+        +alert-error("5000")
+        .account-details
+            .account-header
+                h1 Chi tiết tài khoản admin
+            .account-info
+                .col-6
+                    p
+                        span.label Họ và tên:
+                        span.value #{ExistAccount.fullName}
+                    p
+                        span.label Email:
+                        span.value #{ExistAccount.email}
+                    p
+                        span.label Số điện thoại:
+                        span.value #{ExistAccount.phone}
+                    p
+                        span.label Vai trò:
+                        span.value #{role.title}
+                    p
+                        span.label Trạng thái:
+                        span.value= (ExistAccount.status == 'active') ? 'Đang hoạt động' : 'Không hoạt động'
+                .col-6.avatar-col-6
+                    img.avatar(src=ExistAccount.avatar alt="Avatar của admin")
+                    btn(class="btn btn-primary") Avatar
+            .account-permissions
+                h2 Vai trò & Quyền hạn
+                ul.permissions
+                    each permission in role.permissions
+                        li.permission-item #{permission}
+    else 
+        h1 Bạn không có quyền!

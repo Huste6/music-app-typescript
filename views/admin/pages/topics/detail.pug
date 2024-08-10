@@ -2,27 +2,30 @@ extends ../../layout/default.pug
 include ../../mixins/box-head.pug
 
 block main 
-    .container.my-3 
-        .row
-            .col-12 
-                +box-head(pageTitle)
+    if(roles.permissions.includes("topics-view"))
+        .container.my-3 
+            .row
+                .col-12 
+                    +box-head(pageTitle)
 
-        .row 
-            each song in datasong 
-                .col-6.mb-3 
-                    div(class="song-item")
-                        div(class="inner-image")
-                            a(href=`/songs/detail/${song.slug}`)
-                                img(src=song.avatar)
-                        div(class="inner-content")
-                            div(class="inner-title")
-                                a(href=`/songs/detail/${song.slug}`) #{song.title}
-                            div(class="inner-singer") <i class="fa-solid fa-microphone-lines"></i> #{song.fullName}
-                            if song.status == "active"
-                                a(
-                                    class="badge badge-success"
-                                ) Hoạt động
-                            else
-                                a(
-                                    class="badge badge-danger"
-                                ) Dừng hoạt động
+            .row 
+                each song in datasong 
+                    .col-6.mb-3 
+                        div(class="song-item")
+                            div(class="inner-image")
+                                a(href=`/songs/detail/${song.slug}`)
+                                    img(src=song.avatar)
+                            div(class="inner-content")
+                                div(class="inner-title")
+                                    a(href=`/songs/detail/${song.slug}`) #{song.title}
+                                div(class="inner-singer") <i class="fa-solid fa-microphone-lines"></i> #{song.fullName}
+                                if song.status == "active"
+                                    a(
+                                        class="badge badge-success"
+                                    ) Hoạt động
+                                else
+                                    a(
+                                        class="badge badge-danger"
+                                    ) Dừng hoạt động
+    else 
+        h1 Bạn không có quyền truy cập

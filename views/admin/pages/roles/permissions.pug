@@ -1,6 +1,7 @@
 extends ../../layout/default.pug
 include ../../mixins/alert.pug
 block main
+    if(roles.permissions.includes("roles-permission"))
         h1(class="mb-4") Phân quyền
         +alert-success("5000")  
         if(record)
@@ -161,11 +162,6 @@ block main
                         each item in record 
                             td(class="text-center")
                                 input(type="checkbox")
-                    tr(data-name="accounts-user-create")
-                        td Thêm mới  
-                        each item in record 
-                            td(class="text-center")
-                                input(type="checkbox")
                     tr(data-name="accounts-user-edit")
                         td Chỉnh sửa 
                         each item in record 
@@ -187,3 +183,5 @@ block main
                     class="form-control"
                     name="permissions"
                 )
+    else
+        h1 Bạn không có quyền!
