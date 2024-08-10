@@ -9,7 +9,7 @@ import * as database from "./config/database"
 import clientRoutes from "./routes/client/index.routes";
 import adminRoutes from "./routes/admin/index.routes";
 import { systemConfig } from "./config/config";
-import path from "path"
+import path, { dirname } from "path"
 
 dotenv.config();
 database.connect();
@@ -17,9 +17,9 @@ database.connect();
 const app:Express = express();
 const port:number | string = process.env.PORT || 3000;
 
-app.set("views", "./views");
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
-app.use(express.static('public'));
+app.use(express.static(`${__dirname}/public`));
 
 // flash
 app.use(cookieParser('secret'));
